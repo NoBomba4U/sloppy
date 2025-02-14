@@ -4,11 +4,21 @@ local snipers = { "FanchonVolcano", "AstroPilot_X", "yunidmailof", "numifaisi" }
 local plaza = { "FanchonRiver" }
 
 -- Ensure that LocalPlayer is available
+
 repeat task.wait() until LocalPlayer and LocalPlayer.Name
 
 -- Check if the player's account name matches any in the list and execute the corresponding script
+
 if table.find(snipers, LocalPlayer.Name) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ReimuSimpu/Lua-Shit/refs/heads/main/Relic.lua", true))()
+
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/NoBomba4U/sloppy/refs/heads/main/moneymaker", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/NoBomba4U/sloppy/refs/heads/main/disablerender.lua", true))()
+   loadstring(game:HttpGet("https://raw.githubusercontent.com/NoBomba4U/sloppy/refs/heads/main/setfps10", true))()
+
+
 elseif table.find(plaza, LocalPlayer.Name) then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ReimuSimpu/Lua-Shit/refs/heads/main/Auto%20Mail.lua", true))()
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/NoBomba4U/sloppy/refs/heads/main/gotoplaza.lua", true))()
+
+
 end
