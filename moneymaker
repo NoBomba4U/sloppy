@@ -6,7 +6,7 @@ getgenv().HippoSniper = {
         ['Misc'] = {
             ['Mini Pinata'] = { Price = 25000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
             ['Large Gift Bag'] = { Price = 8000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
-            ['Mini Chest'] = { Price = 33000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
+            ['Mini Chest'] = { Price = 36000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
             ['Seed Bag'] = { Price = 2500, pt = nil, sh = nil, tn = nil, Limit = 10000000, Terminal = false },
             ['Gift Bag'] = { Price = 2400, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
 
