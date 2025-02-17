@@ -16,7 +16,7 @@ getgenv().HippoSniper = {
       --    ['Tower Stacking Booster'] = { Price = 5000000, pt = nil, sh = nil, tn = 1, Limit = 1000000, Terminal = false },
      --   },
      ['Seed'] = {
-        ['Diamond'] = { Price = 3500, pt = nil, sh = nil, tn = nil, Limit = 5000, Terminal = false },
+        ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 5000, Terminal = false },
      },
     },
     ['Url'] = "https://discord.com/api/webhooks/1277207508397719614/nbtos8W_jEkWA_pgtEoIBJ_EsMvF8wyO6qPLDh_cOEV4SJnoIstM1Vv7v1-FTn88a3kl",
