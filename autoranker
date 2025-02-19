@@ -3,11 +3,11 @@ getgenv().Config = {
     ["KickWhenReachGoal"] = {
         ["Rank"] = 20,
         ["Rebirth"] = 9,
-        ["Area"] = 239
+        ["Area"] = 238
     },
     ["StopAt"] = {
         ["Rank"] = 20, 
-        ["Area"] = 239
+        ["Area"] = 238
     },
     
     ["AutoOpen"] = true,
