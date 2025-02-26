@@ -20,17 +20,19 @@ getgenv().HippoSniper = {
         ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 32000, Terminal = false },
      },
     },
+    ['All'] = {
+        ['Pet'] = {
+            ['Huge'] = { Price = 15000000 },
+            ['Titanic'] = { Price = 15000000 },
+            ['Gargantuan'] = { Price = 15000000 },
+        },
+    },
     ['Url'] = "https://discord.com/api/webhooks/1277207508397719614/nbtos8W_jEkWA_pgtEoIBJ_EsMvF8wyO6qPLDh_cOEV4SJnoIstM1Vv7v1-FTn88a3kl",
 }
-
 
 repeat task.wait() until game:IsLoaded()
 local LocalPlayer = game:GetService("Players").LocalPlayer
 repeat task.wait() until not LocalPlayer.PlayerGui:FindFirstChild("__INTRO")
-
-if game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
-    game:GetService("ReplicatedStorage").Network["Travel to Trading Plaza"]:InvokeServer(15502339080)
-end
 
 local Library = game.ReplicatedStorage.Library
 local Client = Library.Client
@@ -38,6 +40,12 @@ local Client = Library.Client
 local RapCmds = require(Client.DevRAPCmds)
 local Network = require(Client.Network)
 local SaveMod = require(Client.Save)
+
+if game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
+    while true do
+        Network.Invoke("Travel to Trading Plaza") task.wait(1)
+    end
+end
 
 local SpecialClassCases, DirClassesTable = {Lootbox = "es", Box = "es", Misc = "MiscItems"}, {}
 for Class, _ in pairs(require(Library.Items.Types).Types) do DirClassesTable[Class] = SpecialClassCases[Class] or Class .. "s" end
@@ -66,7 +74,7 @@ local GetAssetId = function(Class, Info)
 
     if Info.tn then
         if ItemTable.Icon and type(ItemTable.Icon) == "function" then
-            Icon = getupvalues(ItemTable.Icon)[Info.tn]
+            Icon = unpack(getupvalues(ItemTable.Icon))[Info.tn]
         elseif ItemTable.Tiers and ItemTable.Tiers[1] and ItemTable.Tiers[1].Effect then
             local EffectType = ItemTable.Tiers[1].Effect.Type
             Icon = EffectType and EffectType.Tiers and EffectType.Tiers[Info.tn].Icon
@@ -130,11 +138,20 @@ local ValidItem = function(Class, Cost, Info)
     if ConfigItem and Cost <= ConfigItem.Price then
         local _, InvInfo = GetItem(Class, Info.id)
         local AmountToBuy = math.min(Info._am or 1, (ConfigItem.Limit or 0) - (InvInfo and InvInfo._am or 0))
-
+        
         if AmountToBuy > 0 and Info.pt == ConfigItem.pt and Info.sh == ConfigItem.sh and Info.tn == ConfigItem.tn then
             return AmountToBuy
         end
     end
+
+    if HippoSniper['All'][Class] then
+        for i,v in pairs(HippoSniper['All'][Class]) do
+            if string.find(Info.id, i) and Cost <= v.Price then
+                return Info._am or 1
+            end
+        end
+    end
+    
     return 0
 end
 
@@ -149,7 +166,8 @@ local CheckAllListings = function()
                     local AmountToBuy = ValidItem(Class, ListingPrice, ItemData)
 
                     if AmountToBuy > 0 then
-                        local Bought = Network.Invoke("Booths_RequestPurchase", Player.UserId, { [ListingUID] = AmountToBuy })
+
+                          local Bought = Network.Invoke("Booths_RequestPurchase", Player.UserId, { [ListingUID] = AmountToBuy })
                         if Bought then SendWebhook(Class, ItemData, ListingPrice) end
                     end
                 end
@@ -158,7 +176,7 @@ local CheckAllListings = function()
     end
 end
 
-
+--SendWebhook("Misc", {id = "Secret Key" }, 1)
 CheckAllListings()
 
 while task.wait() do
