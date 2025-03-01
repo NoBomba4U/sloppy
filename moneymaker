@@ -23,7 +23,7 @@ getgenv().HippoSniper = {
     ['All'] = {
         ['Pet'] = {
             ['Huge'] = { Price = 15000000 },
-            ['Titanic'] = { Price = 1500000000 },
+            ['Titanic'] = { Price = 2500000000 },
             ['Gargantuan'] = { Price = 1500000000 },
         },
     },
