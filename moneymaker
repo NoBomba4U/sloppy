@@ -110,7 +110,7 @@ local SendWebhook = function(Class, ItemData, Gems)
    end
 
    local Body = game:GetService("HttpService"):JSONEncode({
-       content = Class == "Pet" and (string.find(ItemData.id, "Huge") or string.find(ItemData.id, "Titanic")) and "@Jschlopes" or "",
+       content =
        embeds = {{
            title = Title,
            color = 0xFF00FF,
