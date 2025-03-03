@@ -1,1 +1,8 @@
+repeat task.wait() until game:IsLoaded()
+local LocalPlayer = game:GetService("Players").LocalPlayer
+repeat task.wait() until not LocalPlayer.PlayerGui:FindFirstChild("__INTRO")
+
+repeat task.wait() until LocalPlayer and LocalPlayer.Name
+while task.wait() do
 setfpscap(10)
+end
