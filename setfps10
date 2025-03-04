@@ -4,5 +4,5 @@ repeat task.wait() until not LocalPlayer.PlayerGui:FindFirstChild("__INTRO")
 
 repeat task.wait() until LocalPlayer and LocalPlayer.Name
 while task.wait() do
-setfpscap(10)
+setfpscap(5)
 end
