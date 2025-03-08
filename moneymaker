@@ -37,7 +37,7 @@ repeat task.wait() until not LocalPlayer.PlayerGui:FindFirstChild("__INTRO")
 local Library = game.ReplicatedStorage.Library
 local Client = Library.Client
 
-local RapCmds = require(Client.DevRAPCmds)
+local RapCmds = require(Client.RAPCmds)
 local Network = require(Client.Network)
 local SaveMod = require(Client.Save)
 
