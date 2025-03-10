@@ -3,12 +3,12 @@
 getgenv().HippoSniper = {
     ["Items"] = {
         ['Misc'] = {
-            ['Mini Pinata'] = { Price = 25000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
+            ['Mini Pinata'] = { Price = 25000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
             ['Large Gift Bag'] = { Price = 9000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
             ['Mini Chest'] = { Price = 36000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
             ['Rainbow Mini Chest'] = { Price = 550000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
             ['Seed Bag'] = { Price = 4400, pt = nil, sh = nil, tn = nil, Limit = 10000000, Terminal = false },
-            ['Gift Bag'] = { Price = 2300, pt = nil, sh = nil, tn = nil, Limit = 125000, Terminal = false },
+            ['Gift Bag'] = { Price = 2400, pt = nil, sh = nil, tn = nil, Limit = 125000, Terminal = false },
             ['Insta Plant Capsule'] = { Price = 28000, pt = nil, sh = nil, tn = nil, Limit = 35000, Terminal = true },
         },
         },
