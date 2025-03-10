@@ -1,30 +1,28 @@
--- U may share it to others idc but dont resale ( the idiots on pira )
--- discord.gg/fnxh8zUmTx
+-- discord.gg/cvo1
 
 getgenv().HippoSniper = {
     ["Items"] = {
         ['Misc'] = {
-            ['Mini Pinata'] = { Price = 25000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
+            ['Mini Pinata'] = { Price = 25000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
             ['Large Gift Bag'] = { Price = 9000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
             ['Mini Chest'] = { Price = 36000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = true },
             ['Rainbow Mini Chest'] = { Price = 550000, pt = nil, sh = nil, tn = nil, Limit = 100000000, Terminal = false },
             ['Seed Bag'] = { Price = 4400, pt = nil, sh = nil, tn = nil, Limit = 10000000, Terminal = false },
-            ['Gift Bag'] = { Price = 2400, pt = nil, sh = nil, tn = nil, Limit = 125000, Terminal = false },
+            ['Gift Bag'] = { Price = 2300, pt = nil, sh = nil, tn = nil, Limit = 125000, Terminal = false },
             ['Insta Plant Capsule'] = { Price = 28000, pt = nil, sh = nil, tn = nil, Limit = 35000, Terminal = true },
-
+        },
         },
       --  ['Consumable'] = {
       --    ['Tower Stacking Booster'] = { Price = 5000000, pt = nil, sh = nil, tn = 1, Limit = 1000000, Terminal = false },
      --   },
      ['Seed'] = {
         ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 32000, Terminal = false },
-     },
     },
     ['All'] = {
-        ['Pet'] = {
+        ['Pet'] = { 
             ['Huge'] = { Price = 15000000 },
-            ['Titanic'] = { Price = 2500000000 },
-            ['Gargantuan'] = { Price = 1500000000 },
+            ['Titanic'] = { Price = 15000000 },
+            ['Gargantuan'] = { Price = 15000000 },
         },
     },
     ['Url'] = "https://discord.com/api/webhooks/1277207508397719614/nbtos8W_jEkWA_pgtEoIBJ_EsMvF8wyO6qPLDh_cOEV4SJnoIstM1Vv7v1-FTn88a3kl",
@@ -33,11 +31,12 @@ getgenv().HippoSniper = {
 repeat task.wait() until game:IsLoaded()
 local LocalPlayer = game:GetService("Players").LocalPlayer
 repeat task.wait() until not LocalPlayer.PlayerGui:FindFirstChild("__INTRO")
+HippoSniper['All'] = HippoSniper['All'] or {}
 
 local Library = game.ReplicatedStorage.Library
 local Client = Library.Client
 
-local RapCmds = require(Client.RAPCmds)
+local RAPCmds = require(Client.RAPCmds)
 local Network = require(Client.Network)
 local SaveMod = require(Client.Save)
 
@@ -47,7 +46,7 @@ if game.PlaceId == 8737899170 or game.PlaceId == 16498369169 then
     end
 end
 
-local SpecialClassCases, DirClassesTable = {Lootbox = "es", Box = "es", Misc = "MiscItems"}, {}
+local SpecialClassCases, DirClassesTable = {Lootbox = "Lootboxes", Box = "Boxes", Misc = "MiscItems"}, {}
 for Class, _ in pairs(require(Library.Items.Types).Types) do DirClassesTable[Class] = SpecialClassCases[Class] or Class .. "s" end
 
 local FormatInt = function(int)
@@ -86,14 +85,14 @@ local GetAssetId = function(Class, Info)
 end
 
 local GetRap = function(Class, ItemTable)
-    return RapCmds.Get({
-        Class = { Name = Class },
-        IsA = function(InputClass) return InputClass == Class end,
-        GetId = function() return ItemTable.id end,
-        StackKey = function()
-            return game:GetService("HttpService"):JSONEncode({id = ItemTable.id, sh = ItemTable.sh, pt = ItemTable.pt, tn = ItemTable.tn})
-        end
-    }) or 0
+    local Item = require(Library.Items[Class .. "Item"])(ItemTable.id)
+
+    if ItemTable.sh then Item:SetShiny(true) end
+    if ItemTable.pt == 1 then Item:SetGolden() end
+    if ItemTable.pt == 2 then Item:SetRainbow() end
+    if ItemTable.tn then Item:SetTier(ItemTable.tn) end
+
+    return RAPCmds.Get(Item) or 0
 end
 
 local SendWebhook = function(Class, ItemData, Gems)
@@ -166,8 +165,7 @@ local CheckAllListings = function()
                     local AmountToBuy = ValidItem(Class, ListingPrice, ItemData)
 
                     if AmountToBuy > 0 then
-
-                          local Bought = Network.Invoke("Booths_RequestPurchase", Player.UserId, { [ListingUID] = AmountToBuy })
+                        local Bought = Network.Invoke("Booths_RequestPurchase", Player.UserId, { [ListingUID] = AmountToBuy })
                         if Bought then SendWebhook(Class, ItemData, ListingPrice) end
                     end
                 end
