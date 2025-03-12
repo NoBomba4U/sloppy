@@ -11,13 +11,10 @@ getgenv().HippoSniper = {
             ['Gift Bag'] = { Price = 2400, pt = nil, sh = nil, tn = nil, Limit = 125000, Terminal = false },
             ['Insta Plant Capsule'] = { Price = 28000, pt = nil, sh = nil, tn = nil, Limit = 35000, Terminal = true },
         },
-        },
-      --  ['Consumable'] = {
-      --    ['Tower Stacking Booster'] = { Price = 5000000, pt = nil, sh = nil, tn = 1, Limit = 1000000, Terminal = false },
-     --   },
      ['Seed'] = {
         ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 32000, Terminal = false },
     },
+},
     ['All'] = {
         ['Pet'] = { 
             ['Huge'] = { Price = 15000000 },
