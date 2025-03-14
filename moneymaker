@@ -12,7 +12,7 @@ getgenv().HippoSniper = {
             ['Insta Plant Capsule'] = { Price = 28000, pt = nil, sh = nil, tn = nil, Limit = 35000, Terminal = true },
         },
      ['Seed'] = {
-        ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 32000, Terminal = false },
+        ['Diamond'] = { Price = 3750, pt = nil, sh = nil, tn = nil, Limit = 34000, Terminal = false },
     },
 },
     ['All'] = {
